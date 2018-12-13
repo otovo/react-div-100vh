@@ -1,5 +1,3 @@
-import getType from 'jest-get-type';
-
 export function containsRvh(propertyValue) {
   // TODO: when regexp is lifted up the lexical scope, to be used
   // in both `containsRvh` and `replaceRvhWithPx`, some tests start to
@@ -19,8 +17,24 @@ function replaceRvhWithPx(propertyStringValue, windowHeight) {
   );
 }
 
+function isObject(value) {
+  if (typeof value !== 'object') {
+    return false;
+  }
+  if (value.constructor === RegExp) {
+    return false;
+  } else if (value.constructor === window.Map) {
+    return false;
+  } else if (value.constructor === window.Set) {
+    return false;
+  } else if (value.constructor === window.Date) {
+    return false;
+  }
+  return true;
+}
+
 function throwOnBadArgs(givenStyle, windowHeight) {
-  if (getType(givenStyle) !== 'object' && givenStyle !== undefined)
+  if (isObject(givenStyle) && givenStyle !== undefined)
     throw Error(`style (the first argument) must be an object or undefined`);
   if (typeof windowHeight !== 'number' || windowHeight < 0)
     throw Error('Second argument (windowHeight) must be a non-negative number');

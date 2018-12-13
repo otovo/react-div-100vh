@@ -13,9 +13,7 @@
   },
   "keywords": [],
   "license": "MIT",
-  "dependencies": {
-    "jest-get-type": "^22.4.3"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": ">15",
     "react-dom": ">15"

@@ -34,7 +34,7 @@ function isObject(value) {
 }
 
 function throwOnBadArgs(givenStyle, windowHeight) {
-  if (isObject(givenStyle) && givenStyle !== undefined)
+  if (!isObject(givenStyle) && givenStyle !== undefined)
     throw Error(`style (the first argument) must be an object or undefined`);
   if (typeof windowHeight !== 'number' || windowHeight < 0)
     throw Error('Second argument (windowHeight) must be a non-negative number');
